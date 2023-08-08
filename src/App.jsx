@@ -1,17 +1,27 @@
-
-
+import { useState } from 'react';
 import './App.css'
 
-function App() {
+const InitialInputState = {
+  a: 0,
+  b: 0,
+};
+
+const App = () => {
+  const [inputState, setInputState] = useState({ ...InitialInputState });
 
 
+  const handleInputFields = () => {
+    setInputState({
+      ...inputState
+    })
+  }
   return (
     <div style={{ width: '50%', margin: '0 auto' }}>
-      <h1>Result</h1>
+      <h1>Result:0</h1>
       <div>
         <p>Input</p>
-        <input type="number" />
-        <input type="number" />
+        <input type="number" value={inputState.a} onChange={handleInputFields} name='a' />
+        <input type="number" value={inputState.b} onChange={handleInputFields} name='b' />
       </div>
       <div>
         <p>Operations</p>
@@ -20,10 +30,15 @@ function App() {
         <button>*</button>
         <button>/</button>
         <button>reset</button>
-
+      </div>
+      <div>
+        <p>History</p>
+        <p>
+          <small>There is no history</small>
+        </p>
       </div>
     </div>
   )
 }
 
-export default App
+export default App;
