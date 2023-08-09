@@ -16,6 +16,16 @@ const App = () => {
       [e.target.name]: parseInt(e.target.value),
     })
   }
+
+  const handleClear = () => {
+    setInputState({
+      ...InitialInputState
+    })
+  }
+
+  const handleOperations = (Operations) => {
+    console.log(Operations);
+  }
   // const handleInputFields = (key, value) => {
 
   // }
@@ -35,11 +45,11 @@ const App = () => {
       </div>
       <div>
         <p>Operations</p>
-        <button>+</button>
-        <button>-</button>
-        <button>*</button>
-        <button>/</button>
-        <button>reset</button>
+        <button onClick={() => handleOperations('+')}>+</button>
+        <button onClick={() => handleOperations('-')}>-</button>
+        <button onClick={() => handleOperations('*')}>*</button>
+        <button onClick={() => handleOperations('/')}>/</button>
+        <button onClick={handleClear}>reset</button>
       </div>
       <div>
         <p>History</p>
