@@ -10,11 +10,21 @@ const App = () => {
   const [inputState, setInputState] = useState({ ...InitialInputState });
 
 
-  const handleInputFields = () => {
+  const handleInputFields = (e) => {
     setInputState({
-      ...inputState
+      ...inputState,
+      [e.target.name]: parseInt(e.target.value),
     })
   }
+  // const handleInputFields = (key, value) => {
+
+  // }
+  // const handleInputFields = (inp) => {
+  //   setInputState({
+  //     ...inputState,
+  //     ...inp
+  //   })
+  // }
   return (
     <div style={{ width: '50%', margin: '0 auto' }}>
       <h1>Result:0</h1>
