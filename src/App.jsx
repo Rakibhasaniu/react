@@ -8,6 +8,10 @@
 
 import { useState } from 'react';
 
+import Numberfiilds from './assets/components/ui/Numberfiilds';
+import Button from './assets/components/ui/Button';
+
+
 function* generateId() {
   let id = 0;
 
@@ -105,22 +109,29 @@ const App = () => {
       <h1>Result: {result}</h1>
       <div>
         <p>Inputs</p>
-        <input
-          type="number"
+        <Numberfiilds
+
           value={inputState.a}
           onChange={handleInputChange}
           name="a"
+
         />
-        <input
-          type="number"
+        <Numberfiilds
           value={inputState.b}
           onChange={handleInputChange}
           name="b"
         />
+        {/* <input
+          type="number"
+          value={inputState.b}
+          onChange={handleInputChange}
+          name="b"
+        /> */}
       </div>
       <div>
         <p>Operations</p>
-        <button onClick={() => handleArithmeticOps('+')}>+</button>
+        <Button text='+' onClick={() => handleArithmeticOps('+')} />
+        {/* <button onClick={() => handleArithmeticOps('+')}>+</button> */}
         <button onClick={() => handleArithmeticOps('-')}>-</button>
         <button onClick={() => handleArithmeticOps('*')}>*</button>
         <button onClick={() => handleArithmeticOps('/')}>/</button>
