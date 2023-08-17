@@ -8,6 +8,7 @@ const InitialInputState = {
 
 const App = () => {
   const [inputState, setInputState] = useState({ ...InitialInputState });
+  const [result, setResult] = useState(0);
 
 
   const handleInputFields = (e) => {
@@ -21,10 +22,22 @@ const App = () => {
     setInputState({
       ...InitialInputState
     })
+    setResult(0);
   }
 
-  const handleOperations = (Operations) => {
-    console.log(Operations);
+  const handleOperations = (Operation) => {
+    const fun = new Function(
+      'operation',
+      `
+      return ${inputState.a} ${Operation} ${inputState.b}
+      `
+
+    )
+    // console.log(fun)
+    // console.log(fun(Operation));
+    setResult(fun(Operation));
+    //TODO: 2ND OPTION
+    // setResult(eval(`${inputState.a} ${Operation} ${inputState.b}`))
   }
   // const handleInputFields = (key, value) => {
 
@@ -37,7 +50,7 @@ const App = () => {
   // }
   return (
     <div style={{ width: '50%', margin: '0 auto' }}>
-      <h1>Result:0</h1>
+      <h1>{result}</h1>
       <div>
         <p>Input</p>
         <input type="number" value={inputState.a} onChange={handleInputFields} name='a' />
@@ -56,6 +69,16 @@ const App = () => {
         <p>
           <small>There is no history</small>
         </p>
+        <ul>
+          <li>
+            <p>Operation: 10 * 20, Result: 30</p>
+            <small>5/14/2022</small>
+            <br />
+            <button>
+              restore
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   )
