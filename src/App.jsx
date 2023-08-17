@@ -70,6 +70,9 @@ const App = () => {
     setHistorylist([historyItem, ...historylist])
     // console.log(history);
   }
+  const handleRestore = (history) => {
+    setInputState({ ...history.inputs })
+  }
   // const handleInputFields = (key, value) => {
 
   // }
@@ -101,11 +104,11 @@ const App = () => {
           <small>There is no history</small>
         </p> : <ul>
           {historylist.map((historyItem) => (
-            <li>
+            <li key={historyItem.id}>
               <p>Operation: {historyItem.inputs.a} {historyItem.Operation} {historyItem.inputs.b}, Result: {historyItem.result}</p>
-              <small>{historyItem.date.toLocaleDateString()}</small>
+              <small>{historyItem.date.toLocaleDateString()}{' '}{historyItem.date.toLocaleTimeString()}</small>
               <br />
-              <button>
+              <button onClick={() => handleRestore(history)}>
                 restore
               </button>
             </li>
