@@ -1,6 +1,17 @@
 import { useState } from 'react';
 import './App.css'
 
+function* generateId() {
+  let id = 1;
+  while (true) {
+    yield id++;
+  }
+
+}
+
+const getId = generateId();
+
+
 const InitialInputState = {
   a: 0,
   b: 0,
