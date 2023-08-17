@@ -20,6 +20,7 @@ const InitialInputState = {
 const App = () => {
   const [inputState, setInputState] = useState({ ...InitialInputState });
   const [result, setResult] = useState(0);
+  const [historylist, setHistorylist] = useState([]);
 
 
   const handleInputFields = (e) => {
@@ -37,6 +38,13 @@ const App = () => {
   }
 
   const handleOperations = (Operation) => {
+
+    if (!inputState.a ||
+      !inputState.b) {
+      alert("Invalid Input");
+      return
+    }
+
     const fun = new Function(
       'operation',
       `
@@ -44,11 +52,23 @@ const App = () => {
       `
 
     )
+    const result = fun(Operation);
     // console.log(fun)
     // console.log(fun(Operation));
-    setResult(fun(Operation));
+    setResult(result);
     //TODO: 2ND OPTION
     // setResult(eval(`${inputState.a} ${Operation} ${inputState.b}`))
+
+    const historyItem = {
+      id: getId.next().value,
+      inputs: inputState,
+      Operation,
+      result,
+      date: new Date(),
+
+    };
+    setHistorylist([historyItem, ...historylist])
+    // console.log(history);
   }
   // const handleInputFields = (key, value) => {
 
@@ -77,19 +97,23 @@ const App = () => {
       </div>
       <div>
         <p>History</p>
-        <p>
+        {historylist.length == 0 ? <p>
           <small>There is no history</small>
-        </p>
-        <ul>
-          <li>
-            <p>Operation: 10 * 20, Result: 30</p>
-            <small>5/14/2022</small>
-            <br />
-            <button>
-              restore
-            </button>
-          </li>
-        </ul>
+        </p> : <ul>
+          {historylist.map((historyItem) => (
+            <li>
+              <p>Operation: {historyItem.inputs.a} {historyItem.Operation} {historyItem.inputs.b}, Result: {historyItem.result}</p>
+              <small>{historyItem.date.toLocaleDateString()}</small>
+              <br />
+              <button>
+                restore
+              </button>
+            </li>
+          ))}
+
+        </ul>}
+
+
       </div>
     </div>
   )
