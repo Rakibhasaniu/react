@@ -10,7 +10,8 @@ import { useState } from 'react';
 
 import Numberfiilds from './assets/components/ui/Numberfiilds';
 import Button from './assets/components/ui/Button';
-
+import InputSection from './assets/components/inputs/InputSection';
+import OperationSection from './assets/components/operations/OperationSection';
 
 function* generateId() {
   let id = 0;
@@ -107,37 +108,9 @@ const App = () => {
   return (
     <div style={{ width: '50%', margin: '0 auto' }}>
       <h1>Result: {result}</h1>
-      <div>
-        <p>Inputs</p>
-        <Numberfiilds
-
-          value={inputState.a}
-          onChange={handleInputChange}
-          name="a"
-
-        />
-        <Numberfiilds
-          value={inputState.b}
-          onChange={handleInputChange}
-          name="b"
-        />
-        {/* <input
-          type="number"
-          value={inputState.b}
-          onChange={handleInputChange}
-          name="b"
-        /> */}
-      </div>
-      <div>
-        <p>Operations</p>
-        <Button text='+' onClick={() => handleArithmeticOps('+')} />
-        {/* <button onClick={() => handleArithmeticOps('+')}>+</button> */}
-        <button onClick={() => handleArithmeticOps('-')}>-</button>
-        <button onClick={() => handleArithmeticOps('*')}>*</button>
-        <button onClick={() => handleArithmeticOps('/')}>/</button>
-        <button onClick={() => handleArithmeticOps('%')}>%</button>
-        <button onClick={handleClearOps}>Clear</button>
-      </div>
+      <InputSection inputState={inputState} handleInputChange={handleInputChange} />
+      //TODO: operation arithmetic
+      <OperationSection handleArithmeticOps={handleArithmeticOps} handleClearOps={handleClearOps} />
       <div>
         <p>History</p>
         {histories.length === 0 ? (
