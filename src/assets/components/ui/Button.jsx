@@ -16,7 +16,7 @@ const Button = ({ text, onClick, disabled, customStyle }) => {
 };
 Button.propTypes = {
     text: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    // onClick: PropTypes.func.isRequired,
     customStyle: PropTypes.object,
 }
 Button.defaultProps = {
