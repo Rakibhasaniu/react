@@ -109,9 +109,9 @@ const App = () => {
     <div style={{ width: '50%', margin: '0 auto' }}>
       <h1>Result: {result}</h1>
       <InputSection inputState={inputState} handleInputChange={handleInputChange} />
-      //TODO: operation arithmetic
+
       <OperationSection handleArithmeticOps={handleArithmeticOps} handleClearOps={handleClearOps} />
-      <div>
+      {/* <div>
         <p>History</p>
         {histories.length === 0 ? (
           <p>
@@ -142,7 +142,7 @@ const App = () => {
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
